@@ -1,0 +1,20 @@
+{
+    "escthehac": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-escapethehack-escthehac-180923-authRole",
+            "UnauthRoleArn": "arn:aws:iam::194767397830:role/amplify-escapethehack-escthehac-180923-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::194767397830:role/amplify-escapethehack-escthehac-180923-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-escapethehack-escthehac-180923-deployment",
+            "UnauthRoleName": "amplify-escapethehack-escthehac-180923-unauthRole",
+            "StackName": "amplify-escapethehack-escthehac-180923",
+            "StackId": "arn:aws:cloudformation:eu-central-1:194767397830:stack/amplify-escapethehack-escthehac-180923/780716e0-08b7-11eb-bc97-0a5d2466af98",
+            "AmplifyAppId": "d3aphz9af8jd8l"
+        },
+        "categories": {
+            "auth": {
+                "escapethehacke527f107": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+type EscapeRoom @model {
+  id: ID!
+  name: String!
+  seed: Int
+  link : String
+  author :String
+  riddles: [EscapeRoomRiddles] @connection(name: "EscRid")
+}
+type EscapeRoomRiddles @model (queries : null){
+  id: ID!
+  escaperoom: EscapeRoom @connection(name: "EscRid")
+  riddle: Riddle @connection(name: "RidEsc")
+}
+type Riddle @model {
+  id: ID!
+  name: String
+  difficulty : String
+  category : String
+  EscapeRoom: [EscapeRoomRiddles] @connection(name: "RidEsc")
+}
