@@ -16,4 +16,9 @@ mutation($name :String!) {
   }`;
 
 
-  
+export const deleteEscapeRoom =`mutation MyMutation($id: ID!) {
+    deleteEscapeRoom(input: {id: $id}) {
+      id
+    }
+  }
+  `

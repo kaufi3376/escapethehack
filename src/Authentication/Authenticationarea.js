@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Auth } from 'aws-amplify';
 import {AuthContext} from "../util/AuthContext"
+import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -32,6 +34,7 @@ const tailLayout = {
 function Authenticationarea() {
     const [formState, updateFormState] = useState(initialFormState)
     const authContext = useContext(AuthContext);
+    let history = useHistory();
 
 
     const onFinish = (values) => {
@@ -67,14 +70,15 @@ function Authenticationarea() {
 
     async function signIn() {
         const {username , password} = formState
-        authContext.login()
+       
+        
 
         try {
             const user = await Auth.signIn(username, password);
+            authContext.login()
         } catch (error) {
             console.log('error signing in', error);
         }
-       
         updateFormState(() => ({...formState, formType: "signedIn" }))
       
     
@@ -91,89 +95,159 @@ function Authenticationarea() {
 
   return (
 
-    <div > 
+    <div style={{width : 300, paddingBottom : 530 , margin : "0 auto" , alignItems:'center'}} > 
         { formType === "signIn" && (
-                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}} className="mt-0 mb-16 reveal-from-bottom" data-reveal-delay="400">
+              <div>
+              <h1>Jetzt Einloggen !</h1>
+                    <Form name="normal_login"
+                          className="login-form"
+                          initialValues={{  remember: true}}
+                          onFinish={onFinish} >
+                            <Form.Item
+                                       name="username"
+                                       rules={[
+                                                 {
+                                                    required: true,
+                                                    message: 'Please input your Username!'
+                                                   },]}>
+                                                         <Input name="username" 
+                                                                 prefix={<UserOutlined className="site-form-item-icon" />} 
+                                                                 placeholder="Username" 
+                                                                 onChange={onChange}/>
+                            </Form.Item>
+                            <Form.Item
+                                       name="password"
+                                       rules={[
+                                         {
+                                           required: true, 
+                                           message: 'Please input your Password!'},]}>
+                                                   <Input  name="password"
+                                                           prefix={<LockOutlined className="site-form-item-icon" />}
+                                                           type="password"
+                                                           placeholder="Password"
+                                                           onChange={onChange}/>
+                           </Form.Item>
+      
 
-              
+                           <Form.Item>
+                                      <Button type="primary" htmlType="submit" className="login-form-button" onClick={signIn}>
+                                       Einloggen
+                                      </Button>
+                                            Oder     <a onClick={signInFirst}>Registrieren</a>
+                         </Form.Item>
+                  </Form>
+                </div>
+
+
                     
-                  <div>
-                    Benutzername
-                   <Input name="username" type="text" placeholder="Username" onChange={onChange}></Input><br />
-                  </div><br/>
-                  <div>
-                   Passwort
-                   <Input name="password" type="password" placeholder="Passwort" onChange={onChange}></Input><br />
-                  </div>
-                  <div>
-                     
-                  </div>
-                  <div style={{paddingTop : 30}} >
-                  <Button className="button button-primary button-wide-mobile button-sm" style={{margin : 10}} onClick={signIn} >Einloggen</Button>
-                  <Button className="button button-primary button-wide-mobile button-sm" onClick={signInFirst} >Registrieren</Button>
-                  
-                  </div>
-                
-            
-                 
                     
-                
-                    </div>)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    )
                     }
                     {
                     formType === "signUp" && (
-                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}} className="mt-0 mb-16 reveal-from-bottom" data-reveal-delay="400">
-    
-                    
                       <div>
-                        Benutzername
-                       <Input name="username" type="text" placeholder="Username" onChange={onChange}></Input><br />
-                      </div>
-                      <div>
-                       Passwort
-                       <Input name="password" type="password" placeholder="Passwort" onChange={onChange}></Input><br />
-                      </div>
-                      <div>
-                       E-mail
-                       <Input name="email" type="text" placeholder="E-mail" onChange={onChange}></Input><br />
-                      </div>
-                      <div>
-                          
-                      </div>
-                      <div style={{paddingTop : 30}} >
-                      <Button className="button button-primary button-wide-mobile button-sm" style={{margin : 10}} onClick={signUp}>Registrieren</Button>
-                    
-                      
-                      </div>
-                    
-                     
-                     
-                   
-                        </div>)
+                      <h1>Jetzt Registrieren !</h1>
+                      <Form name="normal_signIn"
+                          className="login-form"
+                          initialValues={{  remember: true}}
+                          onFinish={onFinish} >
+                            <Form.Item
+                                       name="username"
+                                       rules={[
+                                                 {
+                                                    required: true,
+                                                    message: 'Please input your Username!'
+                                                   },]}>
+                                                         <Input name="username" 
+                                                                 prefix={<UserOutlined className="site-form-item-icon" />} 
+                                                                 placeholder="Username" 
+                                                                 onChange={onChange}/>
+                            </Form.Item>
+                            <Form.Item
+                                       name="password"
+                                       rules={[
+                                         {
+                                           required: true, 
+                                           message: 'Please input your Password!'},]}>
+                                                   <Input  name="password"
+                                                           prefix={<LockOutlined className="site-form-item-icon" />}
+                                                           type="password"
+                                                           placeholder="Password"
+                                                           onChange={onChange}/>
+                           </Form.Item>
+                           <Form.Item
+                                       name="email"
+                                       rules={[
+                                         {
+                                           required: true, 
+                                           message: 'Please input your Email!'},]}>
+                                                   <Input  name="email"
+                                                           prefix={<MailOutlined className="site-form-item-icon" />}
+                                                           type="text"
+                                                           placeholder="E-mail"
+                                                           onChange={onChange}/>
+                           </Form.Item>
+      
+
+                           <Form.Item>
+                                      <Button type="primary" htmlType="submit" className="login-form-button" onClick={signUp}>
+                                       Einloggen
+                                      </Button>
+                         </Form.Item>
+    </Form>
+    </div>
+
+
+
+
+                    )
 
 
 
             }
             {
                     formType === "confirmSignUp" && (
-                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}} className="mt-0 mb-16 reveal-from-bottom" data-reveal-delay="400">
-    
-                   
                       <div>
-                        Sie haben einen Code per Email bekommen!
-                       <Input name="authCode"  placeholder="Code" onChange={onChange}></Input><br />
-                      </div>
-                      
-                      <div style={{paddingTop : 30}} >
-                      <Button className="button button-primary button-wide-mobile button-sm" style={{margin : 10}} onClick={confirmSignUp} >Bestätigen</Button>
-                    
-                      
-                      </div>
-                    
-                     
-                     
-                   
-                        </div>)
+                      <h1>Bestätigen Sie bitte Ihre Registrierung mit den Code der Ihnen per Mail zugesendet wurde !</h1>
+                            <Form name="normal_login"
+                                  className="login-form"
+                                  initialValues={{  remember: true}}
+                                  onFinish={onFinish} >
+                                    <Form.Item
+                                               
+                                               rules={[
+                                                         {
+                                                            required: true,
+                                                            message: 'Bitte geben Sie den Bestätigungscode ein!'
+                                                           },]}>
+                                                                 <Input name="authCode" 
+                                                                         prefix={<UserOutlined className="site-form-item-icon" />} 
+                                                                         placeholder="Code" 
+                                                                         onChange={onChange}/>
+                                    </Form.Item>
+                                    <Button type="primary" htmlType="submit" className="login-form-button" onClick={confirmSignUp}>
+                                       Bestätigen
+                                      </Button>
+                                    
+              
+        
+                          </Form>
+                        </div>
+
+
+
+
+
+                    )
 
 
 
@@ -182,7 +256,8 @@ function Authenticationarea() {
                     formType === "signedIn" && (
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}} className="mt-0 mb-16 reveal-from-bottom" data-reveal-delay="400">
     
-                    <p>Willkommen !</p>
+                    <h1> Willkommen ! Gehe zum Dashboard um anzufangen ! </h1>
+                    <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => history.push("/dashboard")}>Zum Dashboard</Button>
                         </div>)
 
 

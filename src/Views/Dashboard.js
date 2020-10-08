@@ -1,15 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import EscapeRoomGenerator from "../Component/EscapeRoomGenerator"
 import EscapeRoomDash from "../Component/EscapeRoomDash"
-import { Auth } from 'aws-amplify';
+
+import { Card } from 'antd';
 
 
 function Home() {
     const [isInEditor, setIsInEditor]= useState(false)
-    const [currentUserName, setCurrentUserName] = useState('');
+    const [key, setKey]= useState("tab1")
 
+    const tabList = [
+        {
+          key: 'tab1',
+          tab: 'Meine Escaperooms',
+        },
+        {
+          key: 'tab2',
+          tab: 'Neuen EscapeRoom erstellen',
+        },
+      ];
+      const contentList = {
+        tab1: <EscapeRoomDash/>,
+        tab2: <EscapeRoomGenerator/>,
+      };
 
+    
     const toggleHandlerToGene = () =>{
         setIsInEditor(true)
 
@@ -18,30 +34,38 @@ function Home() {
         setIsInEditor(false)
 
     }
-    useEffect(() =>{
-        loadUserData();
-    }, [])
-
-
-    const loadUserData = async () => {
-        await Auth.currentUserInfo().then( res => {
-            setCurrentUserName(res.username)
-        })
-        
-        
-    }
-
+    const onTabChange = key => {
+        setKey(key)
+      };
+    
+   
 
   return (
+
       <div>
+          {/*
           <Button type="primary" onClick={toggleHandlerToDash} >Meine Escape Rooms</Button>
           <Button type="primary" onClick={toggleHandlerToGene}>Neuen Escape Room erstellen</Button>
           {
               isInEditor
-              ? <EscapeRoomGenerator username={currentUserName}/>
-              : <EscapeRoomDash username={currentUserName}/>
+              ? <EscapeRoomGenerator/>
+              : <EscapeRoomDash/>
 
           }
+        */}
+           <Card
+          style={{ width: '100%' }}
+          title="Dashboard"
+          tabList={tabList}
+          activeTabKey={key}
+          onTabChange={key => {
+            onTabChange(key);
+          }}
+        >
+          {contentList[key]}
+        </Card>
+          
+
       </div>
    
  

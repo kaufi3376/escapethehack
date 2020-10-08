@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Menu} from 'antd';
 import { RadarChartOutlined , UserOutlined  } from '@ant-design/icons';
+import { Space} from 'antd';
 
 
 import 'antd/dist/antd.css';
@@ -13,6 +14,10 @@ import {AuthContext} from "../../util/AuthContext"
 
 
 const Header = () => { 
+  
+  useEffect(()=>{
+
+  })
 
 
     let history = useHistory();
@@ -75,15 +80,21 @@ const Header = () => {
     <div>
     <div className="logo" />
     <Menu selectedKeys={selectedKey} theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-      <Menu.Item key="1"  onClick={MenuOneHandler} icon = {<RadarChartOutlined style={{ fontsize : "40px" }}/>}>Escape the Hack</Menu.Item>
-      {authContext.isAuth
-      ? <Menu.Item key="2" onClick={MenuTwoHandler}>Dashboard</Menu.Item>
-      : <Menu.Item key="3" onClick={MenuThreeHandler} icon= {<UserOutlined />}>Anmelden</Menu.Item>
-       }
-       {authContext.isAuth
+      
+         
+            <Menu.Item key="1"  onClick={MenuOneHandler} icon = {<RadarChartOutlined style={{ fontsize : "40px" }}/>}>Escape the Hack</Menu.Item>
+          
+              {authContext.isAuth
+                   ? <Menu.Item key="2" onClick={MenuTwoHandler}>Dashboard</Menu.Item>
+                  : <Menu.Item key="3" onClick={MenuThreeHandler} icon= {<UserOutlined />}>Anmelden</Menu.Item>
+                  }
+               {authContext.isAuth
       ? <Menu.Item key="5" onClick={MenuFiveHandler} icon= {<UserOutlined />}>Abmelden</Menu.Item>
       : <Menu.Item key="6"></Menu.Item>
        }
+       {/*
+       <Menu.Item key="7" onClick={MenuFourHandler}> Userinfo</Menu.Item>
+       */}
     </Menu>
     </div>
   )

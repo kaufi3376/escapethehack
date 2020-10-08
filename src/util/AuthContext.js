@@ -3,10 +3,18 @@ import { Auth } from "aws-amplify"
 
 export const AuthContext = React.createContext({
     isAuth : false,
+    username: "",
+    isLoading: true
 });
+
+
+
 
 const AuthContextProvider = props => {
     const [isAuthenticated, setIstAuthenticated] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+    const [currentUsername, setCurrentUsername] = useState("")
+
 
     const loginHandler = () =>{
         setIstAuthenticated(true);
@@ -17,7 +25,7 @@ const AuthContextProvider = props => {
 
     useEffect( () => {
         loadData();
-    }, []);
+    });
 
     const loadData = async () => {
         const response = Auth.currentUserInfo();
@@ -29,6 +37,8 @@ const AuthContextProvider = props => {
             }
             else{
                 setIstAuthenticated(true);
+                setCurrentUsername(res.username)
+                setIsLoading(false)
                 
             }
             })
@@ -38,7 +48,7 @@ const AuthContextProvider = props => {
     }
 
     return (
-        <AuthContext.Provider value={{isAuth : isAuthenticated, login : loginHandler, logout : logoutHandler}}>
+        <AuthContext.Provider value={{isAuth : isAuthenticated, login : loginHandler, logout : logoutHandler , username : currentUsername , isLoading :isLoading}}>
             {props.children}
         </AuthContext.Provider>
 

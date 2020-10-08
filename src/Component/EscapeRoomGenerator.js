@@ -1,19 +1,16 @@
 import { Button, Input } from "antd";
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import {API, Auth, graphqlOperation} from "aws-amplify"
 import * as mutations from "../graphql/mutations"
+import {AuthContext} from "../util/AuthContext"
 
 
-const EscapeRoomGenerator = (
-    {username:username}
-) => { 
+const EscapeRoomGenerator = () => { 
 
     const [escRoNam, setescRoNam] = useState('');
-    const [currentUserName, setCurrentUserName] = useState('');
+    const authContext= useContext(AuthContext)
 
     useEffect ( () =>{
-        setCurrentUserName(username)
-        console.log(username)
 
     },[])
 
@@ -26,7 +23,7 @@ const EscapeRoomGenerator = (
     }
     async function submitHandler() {
         
-        const escapeRoom ={ input :{ name : escRoNam , author : currentUserName}}
+        const escapeRoom ={ input :{ name : escRoNam , author : authContext.username}}
         await API.graphql(graphqlOperation(mutations.createEscapeRoom, escapeRoom));   
     }
 
