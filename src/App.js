@@ -6,16 +6,21 @@ import AppRoute from "./util/AppRoute"
 import Home from "./Views/Home"
 import About from "./Views/About"
 import Dashboard from "./Views/Dashboard"
+import Game from './Views/Game';
+import Authenticationarea from "./Authentication/Authenticationarea"
 
 //Design
 import antdLayout from './Layouts/antdLayout';
+import GameLayout from './Layouts/GameLayout';
 
 //History
 import { createBrowserHistory } from "history";
 
-//Authentication
+//Context
 import AuthContextProvider from "./util/AuthContext"
-import Authenticationarea from "./Authentication/Authenticationarea"
+import GameContextProvider from "./util/GameContext"
+
+
 
 
 
@@ -40,12 +45,18 @@ function App() {
       <Route history={history}>
         <Switch>
           <AuthContextProvider>
+            <GameContextProvider>
               <AppRoute exact path ="/" component={Home} layout={antdLayout} />
               <AppRoute exact path ="/about" component={About} layout={antdLayout} />
               <AppRoute exact path ="/authentication" component={Authenticationarea} layout={antdLayout} />
               <AppRoute exact path ="/dashboard" component={Dashboard} layout={antdLayout} />
-          </AuthContextProvider>
-         </Switch>
+          
+         
+             <AppRoute exact path ="/game" component={Game} layout={GameLayout} />
+            </GameContextProvider>
+           </AuthContextProvider>
+
+        </Switch>
       </Route>
     </BrowserRouter>
  

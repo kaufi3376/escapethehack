@@ -11,16 +11,16 @@ export const AuthContext = React.createContext({
 
 
 const AuthContextProvider = props => {
-    const [isAuthenticated, setIstAuthenticated] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [currentUsername, setCurrentUsername] = useState("")
 
 
     const loginHandler = () =>{
-        setIstAuthenticated(true);
+        setIsAuthenticated(true);
     }
     const logoutHandler = () =>{
-        setIstAuthenticated(false);
+        setIsAuthenticated(false);
     }
 
     useEffect( () => {
@@ -32,11 +32,11 @@ const AuthContextProvider = props => {
         
         const user= response.then(res =>{
             if(res === null){
-                setIstAuthenticated(false);
+                setIsAuthenticated(false);
 
             }
             else{
-                setIstAuthenticated(true);
+                setIsAuthenticated(true);
                 setCurrentUsername(res.username)
                 setIsLoading(false)
                 
