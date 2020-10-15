@@ -22,3 +22,12 @@ export const deleteEscapeRoom =`mutation MyMutation($id: ID!) {
     }
   }
   `
+
+
+  export const createEscapeRoomRiddles =`mutation MyMutation($escid: ID, $ridid: ID) {
+    createEscapeRoomRiddles(input: {escapeRoomRiddlesEscaperoomId: $escid, escapeRoomRiddlesRiddleId: $ridid}) {
+      id
+    }
+  }  
+  `
+

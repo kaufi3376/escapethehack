@@ -9,3 +9,15 @@ query MyQuery($author: String) {
       }
     }
   }`;
+
+  export const getRiddlesByCategory =`
+  query MyQuery($category : String) {
+    listRiddles(filter: {category: {eq: $category}}) {
+      items {
+        name
+        id
+        difficulty
+      }
+    }
+  }`;
+  

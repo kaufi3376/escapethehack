@@ -19,6 +19,7 @@ import { createBrowserHistory } from "history";
 //Context
 import AuthContextProvider from "./util/AuthContext"
 import GameContextProvider from "./util/GameContext"
+import RiddleContextProvider from "./util/RiddleContext"
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Switch>
           <AuthContextProvider>
             <GameContextProvider>
+             <RiddleContextProvider>
               <AppRoute exact path ="/" component={Home} layout={antdLayout} />
               <AppRoute exact path ="/about" component={About} layout={antdLayout} />
               <AppRoute exact path ="/authentication" component={Authenticationarea} layout={antdLayout} />
@@ -53,6 +55,7 @@ function App() {
           
          
              <AppRoute exact path ="/game" component={Game} layout={GameLayout} />
+             </RiddleContextProvider>
             </GameContextProvider>
            </AuthContextProvider>
 

@@ -6,7 +6,7 @@ type EscapeRoom @model {
   author :String
   riddles: [EscapeRoomRiddles] @connection(name: "EscRid")
 }
-type EscapeRoomRiddles @model (queries : null){
+type EscapeRoomRiddles @model {
   id: ID!
   escaperoom: EscapeRoom @connection(name: "EscRid")
   riddle: Riddle @connection(name: "RidEsc")

@@ -17,7 +17,7 @@ const { Step } = Steps;
 const riddels = [
     {
       title: 'First',
-      content: <Socialhackernetwork/> ,
+      content: <Multipleattacks/> ,
     },
     {
       title: 'Second',

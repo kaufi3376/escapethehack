@@ -24,8 +24,12 @@ const EscapeRoomDash = ({}) => {
 
         const userInfo ={  author : authContext.username}
         const userEscapeRooms = await API.graphql(graphqlOperation(customQuerie.getEscapeRoomByName, userInfo ));
-        setCurrentUserEscaperooms(userEscapeRooms.data)
-        setLoading(false)}
+        setCurrentUserEscaperooms(userEscapeRooms.data.listEscapeRooms.items)
+        setLoading(false)
+        
+        
+    
+    }
         else{
             setLoading(true)
         }
@@ -37,6 +41,12 @@ const EscapeRoomDash = ({}) => {
 
         const itemInfo ={  id : itemid }
         await API.graphql(graphqlOperation(customMutations.deleteEscapeRoom, itemInfo ));
+
+        //Fetche aus EscapeRoomRiddles alle mit id => in liste speichern
+        
+
+        //Alle in der Liste aus EscapeRoomRiddle löschen
+
 
         message.success('Escaperoom gelöscht');
 
@@ -54,7 +64,7 @@ const EscapeRoomDash = ({}) => {
             : <div style={{ background: "#ececec", paddingBottom : 500}}><Row gutter={[25,15]} >{ 
                 
                 
-                currentUserEscaperooms.listEscapeRooms.items.map(
+                currentUserEscaperooms.map(
                  item =>(   
                                <Col span={8} key = {item.id}>
                                    <Space align="center">

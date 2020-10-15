@@ -39,6 +39,63 @@ export const listEscapeRooms = /* GraphQL */ `
     }
   }
 `;
+export const getEscapeRoomRiddles = /* GraphQL */ `
+  query GetEscapeRoomRiddles($id: ID!) {
+    getEscapeRoomRiddles(id: $id) {
+      id
+      escaperoom {
+        id
+        name
+        seed
+        link
+        author
+        riddles {
+          nextToken
+        }
+      }
+      riddle {
+        id
+        name
+        difficulty
+        category
+        EscapeRoom {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const listEscapeRoomRiddless = /* GraphQL */ `
+  query ListEscapeRoomRiddless(
+    $filter: ModelEscapeRoomRiddlesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEscapeRoomRiddless(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        escaperoom {
+          id
+          name
+          seed
+          link
+          author
+        }
+        riddle {
+          id
+          name
+          difficulty
+          category
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getRiddle = /* GraphQL */ `
   query GetRiddle($id: ID!) {
     getRiddle(id: $id) {

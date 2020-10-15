@@ -8,7 +8,7 @@ function Home() {
   let history = useHistory();
   return (
       <div>
-          <h3>Hallo und Herlich Willkommen bei Escape the Hack</h3>
+          <h3>Hallo und Herzlich Willkommen bei Escape the Hack</h3>
           <p>Um zu starten gib den Startcode hier ein</p><br/>
           
           <Input style={{width: "50%"}}></Input><br/>
