@@ -9,8 +9,6 @@ export const createEscapeRoom = /* GraphQL */ `
     createEscapeRoom(input: $input, condition: $condition) {
       id
       name
-      seed
-      link
       author
       riddles {
         items {
@@ -29,8 +27,6 @@ export const updateEscapeRoom = /* GraphQL */ `
     updateEscapeRoom(input: $input, condition: $condition) {
       id
       name
-      seed
-      link
       author
       riddles {
         items {
@@ -49,8 +45,6 @@ export const deleteEscapeRoom = /* GraphQL */ `
     deleteEscapeRoom(input: $input, condition: $condition) {
       id
       name
-      seed
-      link
       author
       riddles {
         items {
@@ -71,8 +65,6 @@ export const createEscapeRoomRiddles = /* GraphQL */ `
       escaperoom {
         id
         name
-        seed
-        link
         author
         riddles {
           nextToken
@@ -100,8 +92,6 @@ export const updateEscapeRoomRiddles = /* GraphQL */ `
       escaperoom {
         id
         name
-        seed
-        link
         author
         riddles {
           nextToken
@@ -129,8 +119,6 @@ export const deleteEscapeRoomRiddles = /* GraphQL */ `
       escaperoom {
         id
         name
-        seed
-        link
         author
         riddles {
           nextToken
@@ -202,6 +190,42 @@ export const deleteRiddle = /* GraphQL */ `
         }
         nextToken
       }
+    }
+  }
+`;
+export const createSeed = /* GraphQL */ `
+  mutation CreateSeed(
+    $input: CreateSeedInput!
+    $condition: ModelSeedConditionInput
+  ) {
+    createSeed(input: $input, condition: $condition) {
+      id
+      escaperoomid
+      seed
+    }
+  }
+`;
+export const updateSeed = /* GraphQL */ `
+  mutation UpdateSeed(
+    $input: UpdateSeedInput!
+    $condition: ModelSeedConditionInput
+  ) {
+    updateSeed(input: $input, condition: $condition) {
+      id
+      escaperoomid
+      seed
+    }
+  }
+`;
+export const deleteSeed = /* GraphQL */ `
+  mutation DeleteSeed(
+    $input: DeleteSeedInput!
+    $condition: ModelSeedConditionInput
+  ) {
+    deleteSeed(input: $input, condition: $condition) {
+      id
+      escaperoomid
+      seed
     }
   }
 `;

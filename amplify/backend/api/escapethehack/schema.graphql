@@ -1,8 +1,6 @@
 type EscapeRoom @model {
   id: ID!
   name: String!
-  seed: Int
-  link : String
   author :String
   riddles: [EscapeRoomRiddles] @connection(name: "EscRid")
 }
@@ -17,4 +15,9 @@ type Riddle @model {
   difficulty : String
   category : String
   EscapeRoom: [EscapeRoomRiddles] @connection(name: "RidEsc")
+}
+type Seed @model {
+  id: ID!
+  escaperoomid: String
+  seed : Int
 }
