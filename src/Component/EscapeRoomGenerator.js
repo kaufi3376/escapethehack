@@ -65,8 +65,6 @@ const EscapeRoomGenerator = () => {
         //EscapeRoom erstellen in AWS
         const escapeRoom ={ input :{ name : escRoNam , author : authCon.username}}
         const mutationreturn = await API.graphql(graphqlOperation(mutations.createEscapeRoom, escapeRoom));  
-        console.log(mutationreturn)
-        console.log(mutationreturn.data.createEscapeRoom.id)
         
         let escapeRoomId = mutationreturn.data.createEscapeRoom.id
 
@@ -78,7 +76,15 @@ const EscapeRoomGenerator = () => {
             })
          
         //Generieren eines Links bzw einer zahl oder hashen der ID 
+        let hashcoded = hashCode(escapeRoomId)
 
+        //Abspeichern der EscapeRoomId und des HashCodes
+
+        const setSeed ={ input :{ id : escapeRoomId , seed : hashcoded }}
+        const updatenreturn = await API.graphql(graphqlOperation(mutations.updateEscapeRoom, setSeed));  
+
+
+        
 
 
         history.push("/")
@@ -86,6 +92,13 @@ const EscapeRoomGenerator = () => {
 
     }
 
+    const hashCode=(s)=>{
+        let h;
+        for(let i = 0; i < s.length; i++) 
+              h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+    
+        return h;
+       }
 
 
     const onNameEnteredHandler = () =>{

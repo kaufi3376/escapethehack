@@ -6,6 +6,7 @@ query MyQuery($author: String) {
         author
         id
         name
+        seed
       }
     }
   }`;
@@ -20,4 +21,29 @@ query MyQuery($author: String) {
       }
     }
   }`;
-  
+  export const getEscapeRoomSeed =`query MyQuery($id :String) {
+    listSeeds(filter: {escaperoomid: {eq: $id}}) {
+      items {
+        seed
+      }
+    }
+  }`;
+
+  export const getRiddlesBySeed =`query MyQuery($seed :String) {
+    listEscapeRooms(filter: {seed: {eq: $seed}}) {
+      nextToken
+      items {
+        riddles {
+          items {
+            riddle {
+              category
+              difficulty
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+  `;

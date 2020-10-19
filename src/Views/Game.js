@@ -1,7 +1,14 @@
 import { Steps, Button, message, Divider, Input  } from 'antd';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
+
 import Costumtimer from "../Component/Costumtimer"
+
 import { GameContext } from "../util/GameContext"
+
+import { API, graphqlOperation } from 'aws-amplify';
+import * as costumqueries from "../graphql/customqueries"
+
 
 
 import Numberencryption from "../Component/Riddles/Numberencryption"
@@ -12,23 +19,8 @@ import Multipleattacks from "../Component/Riddles/Multipleattacks"
 import Socialhackernetwork from "../Component/Riddles/Socialhackernetwork"
 
 
+
 const { Step } = Steps;
-
-const riddels = [
-    {
-      title: 'First',
-      content: <Multipleattacks/> ,
-    },
-    {
-      title: 'Second',
-      content: <Unregularhouses/>,
-    },
-    {
-      title: 'Last',
-      content: <Warningtour/>,
-    },
-  ];
-
 
 
 
@@ -36,6 +28,8 @@ function Game() {
 
     const [current, setCurrent] = useState(0)
     const  gameCon = useContext(GameContext)
+    const [loadingRiddles , setLoadingRiddles]= useState(true)
+    const [riddles,setRiddels]= useState([])
     
 
     const next = ()=> {
@@ -47,6 +41,56 @@ function Game() {
         setCurrent(current-1)
       }
 
+      useEffect(  ()=>{
+        loadData();
+
+
+      })
+
+      async function loadData(){
+        const seedInfo ={  seed : gameCon.seed }
+        const fetchedRiddles= await API.graphql(graphqlOperation(costumqueries.getRiddlesBySeed, seedInfo ));
+
+        let containerRiddles = []
+
+        fetchedRiddles.data.listEscapeRooms.items[0].riddles.items.forEach( riddle =>{
+          
+          switch(riddle.riddle.name){
+            case "Numberencryption" : 
+              containerRiddles.push({title :"Geheimer Zahlentext", content : <Numberencryption/>})
+
+              break;
+            case "Unregularhouses" : 
+              containerRiddles.push({title :"", content : <Unregularhouses/>})
+
+              break;
+            case "Listleak" : 
+              containerRiddles.push({title :"", content : <Listleak/>})
+
+              break;
+            case "Warningtour" : 
+              containerRiddles.push({title :"", content : <Warningtour/>})
+
+              break;
+            case "Multipleattacks" : 
+              containerRiddles.push({title :"", content : <Multipleattacks/>})
+
+              break;
+            case "Socialhackernetwork" : 
+              containerRiddles.push({title :"", content : <Socialhackernetwork/>})
+
+              break;
+            
+          }
+        })
+
+        setRiddels(containerRiddles)
+
+
+        setLoadingRiddles(false)
+
+
+      }
 
 
     
@@ -56,23 +100,28 @@ function Game() {
           <Costumtimer/>
           <Divider/>
            <Steps current={current}>
-          {riddels.map(item => (
+          {riddles.map(item => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
         <Divider/>
         
 
-        <div className="steps-content">{riddels[current].content}</div>
+        <div className="steps-content">
+          { loadingRiddles ?
+             <div> Rätsel werden geladen... </ div> 
+            :(riddles[current].content)}
+          
+          </div>
         <div className="steps-action">
        
-          {current < riddels.length - 1 && (
+          {current < riddles.length - 1 && (
             <Button name="nextbutton" type="primary" onClick={() => next()} disabled={gameCon.isNextButtonDisabled}>
               Nächstes Rätsel
             </Button>
           )}
           
-          {current === riddels.length - 1 && (
+          {current === riddles.length - 1 && (
             <Button type="primary" onClick={() => message.success('Processing complete!')}>
               Done
             </Button>

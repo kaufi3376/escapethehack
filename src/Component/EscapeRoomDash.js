@@ -56,6 +56,8 @@ const EscapeRoomDash = ({}) => {
         message.error('Escaperoom nicht gelöscht');
 
     }
+
+
     
     return (
         <div >{
@@ -81,7 +83,8 @@ const EscapeRoomDash = ({}) => {
                                                              <DeleteTwoTone 
                                                                style={{ color : "#08c", fontSize : "25px"}} /></Popconfirm>}
                                          >
-                                       Autor : {item.author} 
+                                       Autor : {item.author} <br/>
+                                       StartCode: <b> {item.seed}</b>
                                        
                                     </Card>
                                     </Space>

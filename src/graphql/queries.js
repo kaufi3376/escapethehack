@@ -6,6 +6,7 @@ export const getEscapeRoom = /* GraphQL */ `
     getEscapeRoom(id: $id) {
       id
       name
+      seed
       author
       riddles {
         items {
@@ -26,6 +27,7 @@ export const listEscapeRooms = /* GraphQL */ `
       items {
         id
         name
+        seed
         author
         riddles {
           nextToken
@@ -42,6 +44,7 @@ export const getEscapeRoomRiddles = /* GraphQL */ `
       escaperoom {
         id
         name
+        seed
         author
         riddles {
           nextToken
@@ -75,6 +78,7 @@ export const listEscapeRoomRiddless = /* GraphQL */ `
         escaperoom {
           id
           name
+          seed
           author
         }
         riddle {
@@ -119,31 +123,6 @@ export const listRiddles = /* GraphQL */ `
         EscapeRoom {
           nextToken
         }
-      }
-      nextToken
-    }
-  }
-`;
-export const getSeed = /* GraphQL */ `
-  query GetSeed($id: ID!) {
-    getSeed(id: $id) {
-      id
-      escaperoomid
-      seed
-    }
-  }
-`;
-export const listSeeds = /* GraphQL */ `
-  query ListSeeds(
-    $filter: ModelSeedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listSeeds(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        escaperoomid
-        seed
       }
       nextToken
     }

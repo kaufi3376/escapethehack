@@ -24,10 +24,27 @@ export const deleteEscapeRoom =`mutation MyMutation($id: ID!) {
   `
 
 
-  export const createEscapeRoomRiddles =`mutation MyMutation($escid: ID, $ridid: ID) {
+export const createEscapeRoomRiddles =`mutation MyMutation($escid: ID, $ridid: ID) {
     createEscapeRoomRiddles(input: {escapeRoomRiddlesEscaperoomId: $escid, escapeRoomRiddlesRiddleId: $ridid}) {
       id
     }
   }  
   `
 
+
+export const createEscapeRoomSeed =`mutation MyMutation($escroomid: String, $seed: Int) {
+  createSeed(input: {escaperoomid: $escroomid, seed: $seed}) {
+    escaperoomid
+  }
+}`
+
+export const updateSeed =`
+mutation MyMutation($idr :ID! , $seed : String ){
+  updateEscapeRoom(input: {id: $idr, seed: $seed}) {
+    author
+    id
+    name
+    seed
+  }
+}
+`;

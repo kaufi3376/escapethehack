@@ -6,7 +6,8 @@ export const GameContext = React.createContext({
     isNextButtonDisabled: true,
     tippsCount :2,
     joker :1,
-    tippsCount : []
+    tippsCount : [],
+    seed : 0
 
 
 });
@@ -20,14 +21,9 @@ const GameContextProvider = props => {
     const [tippsCount, setTippsCount] = useState(2)
     const [joker, setJoker] = useState(1)
     const [tipps , setTipps]= useState([])
+    const [seed , setSeed]= useState(0)
 
 
-    useEffect(() =>{
-        //TODO : Alle Riddels des EscapeRooms fetchen
-        //Tipps laden 
-
-    })
-    
 
     const setNextButtonDisable = () =>{
         setIsNextDisabled(true)
@@ -49,6 +45,9 @@ const GameContextProvider = props => {
     const setTippsCountHandler = () =>{
         setTippsCount(2)
     }
+    const setSeedHandler = (seed) =>{
+        setSeed(seed)
+    }
 
 
     useEffect( () => {
@@ -58,6 +57,8 @@ const GameContextProvider = props => {
     const loadData = async () => {
         
     }
+
+
 
     return (
         <GameContext.Provider value={{isNextButtonDisabled: isNextDisabled, 
@@ -69,7 +70,9 @@ const GameContextProvider = props => {
                                       decrementTipps : decrementTipps,
                                       decrementJoker : decrementJoker,
                                       tipps : tipps,
-                                      setTipps : setCostumTipps }}>
+                                      setTipps : setCostumTipps,
+                                      seed :seed,
+                                      setSeed: setSeedHandler }}>
             {props.children}
         </GameContext.Provider>
 

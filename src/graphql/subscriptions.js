@@ -6,6 +6,7 @@ export const onCreateEscapeRoom = /* GraphQL */ `
     onCreateEscapeRoom {
       id
       name
+      seed
       author
       riddles {
         items {
@@ -21,6 +22,7 @@ export const onUpdateEscapeRoom = /* GraphQL */ `
     onUpdateEscapeRoom {
       id
       name
+      seed
       author
       riddles {
         items {
@@ -36,6 +38,7 @@ export const onDeleteEscapeRoom = /* GraphQL */ `
     onDeleteEscapeRoom {
       id
       name
+      seed
       author
       riddles {
         items {
@@ -53,6 +56,7 @@ export const onCreateEscapeRoomRiddles = /* GraphQL */ `
       escaperoom {
         id
         name
+        seed
         author
         riddles {
           nextToken
@@ -77,6 +81,7 @@ export const onUpdateEscapeRoomRiddles = /* GraphQL */ `
       escaperoom {
         id
         name
+        seed
         author
         riddles {
           nextToken
@@ -101,6 +106,7 @@ export const onDeleteEscapeRoomRiddles = /* GraphQL */ `
       escaperoom {
         id
         name
+        seed
         author
         riddles {
           nextToken
@@ -163,33 +169,6 @@ export const onDeleteRiddle = /* GraphQL */ `
         }
         nextToken
       }
-    }
-  }
-`;
-export const onCreateSeed = /* GraphQL */ `
-  subscription OnCreateSeed {
-    onCreateSeed {
-      id
-      escaperoomid
-      seed
-    }
-  }
-`;
-export const onUpdateSeed = /* GraphQL */ `
-  subscription OnUpdateSeed {
-    onUpdateSeed {
-      id
-      escaperoomid
-      seed
-    }
-  }
-`;
-export const onDeleteSeed = /* GraphQL */ `
-  subscription OnDeleteSeed {
-    onDeleteSeed {
-      id
-      escaperoomid
-      seed
     }
   }
 `;
