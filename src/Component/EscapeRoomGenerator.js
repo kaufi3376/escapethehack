@@ -46,6 +46,7 @@ const EscapeRoomGenerator = () => {
     const[modNum, setModNum]= useState(0);
 
     let history = useHistory()
+    const nameRegEx= /^[^%]{4,}$/;
 
     
     
@@ -102,8 +103,17 @@ const EscapeRoomGenerator = () => {
 
 
     const onNameEnteredHandler = () =>{
-        setNameTrigger(false)
+        let validName = nameRegEx.exec(escRoNam)
+        if(validName === null){
+            message.error("Der Name für den EscapeRoom muss mindestens 4 Zeichen lang sein")
+
+        }
+        else{
+            setNameTrigger(false)
         setDurationTrigger(true)
+
+        }
+    
     }
 
     const onDurationEnteredHandler = () =>{

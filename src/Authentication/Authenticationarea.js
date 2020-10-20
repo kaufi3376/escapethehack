@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, message } from 'antd';
 import { Auth } from 'aws-amplify';
 import {AuthContext} from "../util/AuthContext"
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
@@ -38,7 +38,7 @@ function Authenticationarea() {
 
 
     const onFinish = (values) => {
-        console.log('Success:', values);
+        //console.log('Success:', values);
       };
     
       const onFinishFailed = (errorInfo) => {
@@ -54,9 +54,33 @@ function Authenticationarea() {
     const {formType} = formState
 
     async function signUp() {
+
+      try{
         const {username , email , password} = formState
         await Auth.signUp({ username , password, attributes :{ email }})
         updateFormState(() => ({...formState, formType: "confirmSignUp" }))
+      }
+      catch(error){
+        console.log('error signing in', error);
+        switch(error.code){
+          case "UsernameExistsException":
+            message.error('Der Benutzername ist schon vergeben');
+            
+            break;
+          case "InvalidParameterException":
+
+            if(error.message==="Invalid email address format."){
+              
+            message.error("Bitte geben Sie eine valide Email Adresse an");}
+            else if (error.message === "1 validation error detected: Value at 'password' failed to satisfy constraint: Member must have length greater than or equal to 6"){
+              message.error("Das Passwort muss mindestens 6 Zeichen lang sein");
+            }
+              
+              break;
+        }
+        
+
+      }
 
     }
 
@@ -76,10 +100,20 @@ function Authenticationarea() {
         try {
             const user = await Auth.signIn(username, password);
             authContext.login()
+            updateFormState(() => ({...formState, formType: "signedIn" }))
         } catch (error) {
             console.log('error signing in', error);
+            switch(error.code){
+              case "UserNotFoundException":
+                message.error('Der Benutzer wurde leider nicht gefunden');
+                
+                break;
+              case "NotAuthorizedException":
+                  message.error('Passwort oder Benutzername ist nicht korrekt');
+                  
+                  break;
+            }
         }
-        updateFormState(() => ({...formState, formType: "signedIn" }))
       
     
         

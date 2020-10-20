@@ -42,10 +42,7 @@ const EscapeRoomDash = ({}) => {
         const itemInfo ={  id : itemid }
         await API.graphql(graphqlOperation(customMutations.deleteEscapeRoom, itemInfo ));
 
-        //Fetche aus EscapeRoomRiddles alle mit id => in liste speichern
-        
 
-        //Alle in der Liste aus EscapeRoomRiddle löschen
 
 
         message.success('Escaperoom gelöscht');
