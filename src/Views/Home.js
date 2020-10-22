@@ -5,6 +5,14 @@ import { useHistory } from 'react-router-dom';
 import { GameContext } from "../util/GameContext"
 
 import * as costumqueries from "../graphql/customqueries"
+import logo from "../Pictures/logo.png"
+
+/**
+ * 
+ * functional component that gets loaded after you are starting the app
+ * 
+ * 
+ */
 
 
 
@@ -14,13 +22,24 @@ function Home() {
   const [input , setInput] = useState(0);
   const inputRegEx = /^[-+]?\d+$/
 
-
+   /**
+    * function that executes if the input field is changing values
+    * 
+    * @param {
+    * } e 
+    */
   const onChangeHandler = (e) =>{
     e.persist()
     setInput(e.target.value)
 
 
   }
+
+  /**
+   * function that checks if the input code is valid and if so the game is getting started
+   * 
+   * 
+   */
 
   async function onStartHandler(){
     //Validation of input 
@@ -54,8 +73,11 @@ function Home() {
 
 
   return (
-      <div>
-          <h3>Hallo und Herzlich Willkommen bei Escape the Hack</h3>
+      <div style={{ textAlign : "center"}}>
+  
+          <img style={{height :"300px" , width :"375px"}} src={logo}/><br/>
+
+           <h2>Bewahre die Menschheit vor einer großen Katastrophe ! Das Internet steht kurz davor gehackt zu werden. Kannst du es schaffen und die Hacker überlisten ? </h2>
           <p>Um zu starten gib den Startcode hier ein: </p><br/>
           
           <Input onChange={onChangeHandler} style={{width: "10%"}}></Input><br/>

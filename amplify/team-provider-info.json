@@ -14,6 +14,12 @@
         "categories": {
             "auth": {
                 "escapethehacke527f107": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d3aphz9af8jd8l",
+                    "type": "manual"
+                }
             }
         }
     }

@@ -22,7 +22,11 @@ import GameContextProvider from "./util/GameContext"
 import RiddleContextProvider from "./util/RiddleContext"
 
 
-
+/**
+ * Main Class which contains all routes and toggles between them
+ * 
+ * 
+ */
 
 
 
@@ -49,7 +53,6 @@ function App() {
             <GameContextProvider>
              <RiddleContextProvider>
               <AppRoute exact path ="/" component={Home} layout={antdLayout} />
-              <AppRoute exact path ="/about" component={About} layout={antdLayout} />
               <AppRoute exact path ="/authentication" component={Authenticationarea} layout={antdLayout} />
               <AppRoute exact path ="/dashboard" component={Dashboard} layout={antdLayout} />
           

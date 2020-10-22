@@ -7,6 +7,15 @@ import { Card, Col, Popconfirm, Row , Space,  message} from "antd"
 import { DeleteTwoTone } from "@ant-design/icons"
 
 
+/**
+ * 
+ * functional component that shows all Escaperooms of the user and gives him the ability to delete them. 
+ * 
+ * @param {
+ * 
+ * } param0 
+ */
+
 const EscapeRoomDash = ({}) => { 
 
 
@@ -17,7 +26,11 @@ const EscapeRoomDash = ({}) => {
     useEffect(() =>{
         loadData()
     })
-
+    
+    /**
+     * function that is fetching data. It fetches all EscapeRooms that the user has been created
+     * 
+     */
 
     async function loadData() {
         if(!authContext.isLoading){
@@ -36,6 +49,14 @@ const EscapeRoomDash = ({}) => {
 
     }
 
+    /**
+     * 
+     * function that deletes an given item from the backend
+     * 
+     * @param {
+     * } itemid 
+     */
+
   
     async function deleteHandler (itemid) {
 
@@ -48,6 +69,11 @@ const EscapeRoomDash = ({}) => {
         message.success('Escaperoom gelöscht');
 
     }
+
+    /**
+     * function that gives feedback if the user decided not to delete an EscapeRoom
+     * 
+     */
 
     function cancelDeletion(){
         message.error('Escaperoom nicht gelöscht');

@@ -9,6 +9,12 @@ import {
 } from '@ant-design/icons';
 import Costumsider from "../Component/layout/Costumsider"
 
+/**
+ * 
+ * Layout that is used in a EscapeRoom with a sider and content in the middle and a footer at the bottom
+ * 
+ * 
+ */
 
 
 

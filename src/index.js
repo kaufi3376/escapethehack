@@ -9,6 +9,11 @@ import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 
+/**
+ * Wrapp that renders the React App and configures AWS
+ * 
+ * 
+ */
 
 Amplify.configure(awsconfig);
 

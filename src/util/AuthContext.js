@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { Auth } from "aws-amplify"
 
+
+/**
+ *  Context class that stores all information about the Authentication process. 
+ * The AuthContextProvider is exported for wrapping other routes
+ * 
+ * 
+ */
+
+
+
 export const AuthContext = React.createContext({
     isAuth : false,
     username: "",
@@ -11,10 +21,13 @@ export const AuthContext = React.createContext({
 
 
 const AuthContextProvider = props => {
+    /**
+     * State Hooks that store authentication data
+     * 
+     */
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [currentUsername, setCurrentUsername] = useState("")
-
 
     const loginHandler = () =>{
         setIsAuthenticated(true);
@@ -26,6 +39,14 @@ const AuthContextProvider = props => {
     useEffect( () => {
         loadData();
     });
+
+
+    /**
+     * 
+     * async function that loads all data about the current user.
+     * 
+     */
+
 
     const loadData = async () => {
         const response = Auth.currentUserInfo();

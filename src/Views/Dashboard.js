@@ -6,6 +6,13 @@ import EscapeRoomDash from "../Component/EscapeRoomDash"
 import { Card } from 'antd';
 
 
+/**
+ * 
+ * functional Component that creats tabs and toggles between the tabs 
+ * 
+ * 
+ */
+
 function Home() {
     const [isInEditor, setIsInEditor]= useState(false)
     const [key, setKey]= useState("tab1")
@@ -36,14 +43,6 @@ function Home() {
       };
 
     
-    const toggleHandlerToGene = () =>{
-        setIsInEditor(true)
-
-    }
-    const toggleHandlerToDash = () =>{
-        setIsInEditor(false)
-
-    }
     const onTabChange = key => {
         setKey(key)
       };
@@ -53,16 +52,6 @@ function Home() {
   return (
 
       <div>
-          {/*
-          <Button type="primary" onClick={toggleHandlerToDash} >Meine Escape Rooms</Button>
-          <Button type="primary" onClick={toggleHandlerToGene}>Neuen Escape Room erstellen</Button>
-          {
-              isInEditor
-              ? <EscapeRoomGenerator/>
-              : <EscapeRoomDash/>
-
-          }
-        */}
            <Card
           style={{ width: '100%' }}
           title="Dashboard"

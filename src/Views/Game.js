@@ -18,7 +18,11 @@ import Warningtour from "../Component/Riddles/Warningtour"
 import Multipleattacks from "../Component/Riddles/Multipleattacks"
 import Socialhackernetwork from "../Component/Riddles/Socialhackernetwork"
 
-
+/**
+ * 
+ * functional component that manages a game, fetches riddles and build up the EscapeRoom
+ * 
+ */
 
 const { Step } = Steps;
 
@@ -46,6 +50,12 @@ function Game() {
 
 
       })
+
+      /**
+       * 
+       * fetching data about the room based on the game seed
+       * 
+       */
 
       async function loadData(){
         const seedInfo ={  seed : gameCon.seed }

@@ -2,6 +2,16 @@ import React from 'react';
 import Header from '../Component/layout/Header';
 import Footer from '../Component/layout/Footer';
 
+/**
+ * 
+ * defaul layout that includes a header, footer and content
+ * 
+ * @param {
+ * 
+ * } param0 
+ */
+
+
 const LayoutDefault = ({ 
   children: children}) => (
   <>

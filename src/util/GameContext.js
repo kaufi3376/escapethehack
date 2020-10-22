@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
 
+/**
+ * 
+ * Context that provides all information about the current game
+ * 
+ * it also exports the gamecontextprovider that wrapps the other components
+ * 
+ * 
+ */
+
 
 export const GameContext = React.createContext({
     isNextButtonDisabled: true,
@@ -13,7 +22,13 @@ export const GameContext = React.createContext({
 });
 
 
-
+/**
+ * 
+ * The provider which is getting exported
+ * 
+ * @param {
+ * } props 
+ */
 
 
 const GameContextProvider = props => {

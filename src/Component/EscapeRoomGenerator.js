@@ -14,6 +14,14 @@ import { wait } from "@testing-library/react";
 import { useHistory } from "react-router-dom";
 
 
+/**
+ * 
+ * functional component that returns the whole escaperoomgeneratong process
+ * 
+ */
+
+
+
 const EscapeRoomGenerator = () => { 
 
     const [escRoNam, setescRoNam] = useState('');
@@ -52,7 +60,12 @@ const EscapeRoomGenerator = () => {
     
 
 
-
+    /**
+     * function that stores if something is written in the input field
+     * 
+     * @param {
+     * } e 
+     */
 
     const onChange= (e) => {
         e.persist()
@@ -60,6 +73,13 @@ const EscapeRoomGenerator = () => {
         
     
     }
+
+    /**
+     * 
+     * function that is executed after configuring the escaperoom. It submits all information to the backend
+     * 
+     */
+
 
     async function submitHandler() {
 
@@ -92,6 +112,14 @@ const EscapeRoomGenerator = () => {
 
 
     }
+    /**
+     * 
+     * Mathematical function that gets an ID of an EscapeRoom and is hashing it to an shorter Integer
+     * 
+     * @param {
+     * 
+     * } s 
+     */
 
     const hashCode=(s)=>{
         let h;
@@ -100,6 +128,13 @@ const EscapeRoomGenerator = () => {
     
         return h;
        }
+
+
+       /**
+        * 
+        * function that gets executed after a name for the escaperoom gets entered
+        * 
+        */
 
 
     const onNameEnteredHandler = () =>{
@@ -116,6 +151,12 @@ const EscapeRoomGenerator = () => {
     
     }
 
+/**
+ *  function that gets executed after the time has been choosen by the creator
+ * 
+ */
+
+
     const onDurationEnteredHandler = () =>{
         if(duration != ''){
         setDurationTrigger(false)
@@ -128,6 +169,14 @@ const EscapeRoomGenerator = () => {
         setDuration(value)
     }
 
+
+
+    /**
+     * 
+     * function that saves all choosen riddles into one array
+     * 
+     * 
+     */
 
     const chooseRiddlesByCategory=() =>{
         
@@ -154,6 +203,17 @@ const EscapeRoomGenerator = () => {
 
     }
 
+    /**
+     * 
+     * function that selects a certain number of items out of an array
+     * 
+     * 
+     * @param {
+     * } conArray 
+     * @param {*} number 
+     */
+
+
     const randomRiddles=(conArray, number)=>{
          
         let conRiddles =[...conArray]
@@ -175,6 +235,11 @@ const EscapeRoomGenerator = () => {
 
     }
 
+    /**
+     * 
+     * function that selects a random amout of riddles and random riddles
+     * 
+     */
 
     const randomRoom = () =>{
         let algo = Math.floor(Math.random() * riddleCon.algorithmikRiddle.length)

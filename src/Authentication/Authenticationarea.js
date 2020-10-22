@@ -5,7 +5,11 @@ import {AuthContext} from "../util/AuthContext"
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 
-
+/**
+ * 
+ * functional component that authenticats and register the user, fetches data from cognito
+ * 
+ */
 
 
 const initialFormState= {
@@ -53,6 +57,12 @@ function Authenticationarea() {
 
     const {formType} = formState
 
+    /**
+     * 
+     * function that is used if the user wants to signUp. It also toggles the next step in confimSignUp
+     * 
+     */
+
     async function signUp() {
 
       try{
@@ -84,12 +94,25 @@ function Authenticationarea() {
 
     }
 
+    /**
+     * 
+     * function that is used in multi factor authentication to confirm the email adress of the user
+     * 
+     */
+
+
     async function confirmSignUp() {
         const {username , authCode} = formState
         await Auth.confirmSignUp(username, authCode)
         updateFormState(() => ({...formState, formType: "signIn" }))
         
     }
+
+    /**
+     * 
+     * function that is executed when the user wants to sign in. Also the user is getting checked if name exist and password is correct
+     * 
+     */
 
 
     async function signIn() {
@@ -115,6 +138,12 @@ function Authenticationarea() {
             }
         }
       
+
+        /**
+         * 
+         * function that updates the form to signUp
+         * 
+         */
     
         
     }

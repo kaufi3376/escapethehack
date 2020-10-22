@@ -9,6 +9,14 @@ import Costumfooter from "../Component/layout/Footer"
 import 'antd/dist/antd.css';
 import "./antdLayout.css"
 
+
+/**
+ * 
+ * Layout that is used when logged in. It includes a custom header, and a Customfooter
+ * 
+ */
+
+
 const { Header, Content, Footer, Sider } = Layout;
 
 

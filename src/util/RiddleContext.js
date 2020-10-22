@@ -6,6 +6,13 @@ import * as mutations from "../graphql/mutations"
 import * as customQueries from "../graphql/customqueries"
 
 
+/**
+ * 
+ * Context that provides all information about riddles
+ * is used for generating EscapeRooms
+ * 
+ */
+
 
 export const RiddleContext = React.createContext({
     algorithmikRiddle : [],
@@ -21,7 +28,13 @@ export const RiddleContext = React.createContext({
 });
 
 
-
+/**
+ * 
+ * Provider which is getting exported 
+ * 
+ * @param {
+ * } props 
+ */
 
 
 const RiddleContextProvider = props => {
@@ -37,7 +50,12 @@ const RiddleContextProvider = props => {
     const[selectedRiddles, setSelectedRiddles]= useState([])
 
    
-
+/**
+ * 
+ * fetching all the data that is stored in a certain category
+ * 
+ * 
+ */
     useEffect( () => {
         loadData();
     },[]);
