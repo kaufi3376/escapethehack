@@ -4,7 +4,6 @@ import AppRoute from "./util/AppRoute"
 
 //Views
 import Home from "./Views/Home"
-import About from "./Views/About"
 import Dashboard from "./Views/Dashboard"
 import Game from './Views/Game';
 import Authenticationarea from "./Authentication/Authenticationarea"

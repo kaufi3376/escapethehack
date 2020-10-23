@@ -59,6 +59,7 @@ const EscapeRoomDash = ({}) => {
 
   
     async function deleteHandler (itemid) {
+        
 
         const itemInfo ={  id : itemid }
         await API.graphql(graphqlOperation(customMutations.deleteEscapeRoom, itemInfo ));
