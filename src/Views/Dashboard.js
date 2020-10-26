@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Button } from 'antd';
+import React, { useState } from 'react';
 import EscapeRoomGenerator from "../Component/EscapeRoomGenerator"
 import EscapeRoomDash from "../Component/EscapeRoomDash"
 
@@ -14,7 +13,7 @@ import { Card } from 'antd';
  */
 
 function Home() {
-    const [isInEditor, setIsInEditor]= useState(false)
+
     const [key, setKey]= useState("tab1")
 
     const tabList = [
@@ -51,7 +50,7 @@ function Home() {
 
   return (
 
-      <div>
+      <div classname={"cards"}>
            <Card
           style={{ width: '100%' }}
           title="Dashboard"
