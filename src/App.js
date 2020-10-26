@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Switch, Route, BrowserRouter, useLocation } from 'react-router-dom';
+
+//Util
 import AppRoute from "./util/AppRoute"
+import ProtectedRoute from "./util/ProtectedRoute"
 
 //Views
 import Home from "./Views/Home"
@@ -53,10 +56,10 @@ function App() {
              <RiddleContextProvider>
               <AppRoute exact path ="/" component={Home} layout={antdLayout} />
               <AppRoute exact path ="/authentication" component={Authenticationarea} layout={antdLayout} />
-              <AppRoute exact path ="/dashboard" component={Dashboard} layout={antdLayout} />
+              <ProtectedRoute exact path ="/dashboard" component={Dashboard} layout={antdLayout} />
           
          
-             <AppRoute exact path ="/game" component={Game} layout={GameLayout} />
+              <AppRoute exact path ="/game" component={Game} layout={GameLayout} />
              </RiddleContextProvider>
             </GameContextProvider>
            </AuthContextProvider>
