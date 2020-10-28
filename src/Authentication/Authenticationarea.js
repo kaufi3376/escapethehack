@@ -123,6 +123,7 @@ function Authenticationarea() {
         try {
             const user = await Auth.signIn(username, password);
             authContext.login()
+            history.push("/dashboard")
             updateFormState(() => ({...formState, formType: "signedIn" }))
         } catch (error) {
             console.log('error signing in', error);

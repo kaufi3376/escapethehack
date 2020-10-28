@@ -16,9 +16,9 @@ export const GameContext = React.createContext({
     tippsCount :2,
     joker :1,
     tippsCount : [],
-    seed : 0
-
-
+    seed : 0,
+    start: false,
+    time : 0
 });
 
 
@@ -37,6 +37,8 @@ const GameContextProvider = props => {
     const [joker, setJoker] = useState(1)
     const [tipps , setTipps]= useState([])
     const [seed , setSeed]= useState(0)
+    const [start, setStart]= useState(false)
+    const [time, setTime]= useState(Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30)
 
 
 
@@ -63,6 +65,12 @@ const GameContextProvider = props => {
     const setSeedHandler = (seed) =>{
         setSeed(seed)
     }
+    const setStartHandler = (start) =>{
+        setStart(start)
+    }
+    const setTimeHandler = (time) =>{
+        setTime(time)
+    }
 
 
     useEffect( () => {
@@ -87,7 +95,11 @@ const GameContextProvider = props => {
                                       tipps : tipps,
                                       setTipps : setCostumTipps,
                                       seed :seed,
-                                      setSeed: setSeedHandler }}>
+                                      setSeed: setSeedHandler,
+                                      start: start,
+                                      setStart : setStartHandler,
+                                      time : time,
+                                      setTime : setTimeHandler }}>
             {props.children}
         </GameContext.Provider>
 

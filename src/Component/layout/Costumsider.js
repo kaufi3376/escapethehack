@@ -79,6 +79,7 @@ function Costumsider () {
         })
 
         const backToHomeHandler = () => {
+          gameCon.setStart(false)
           history.push("/")
 
         }
@@ -115,7 +116,9 @@ function Costumsider () {
           title="Basic Modal"
           visible={visible}
           onOk={handleOk}
+  
           onCancel={handleCancel}
+          
         >
           <Button onClick={ ()=>{  
                                    if(gameCon.tippsCount >0 ){

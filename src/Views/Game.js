@@ -10,7 +10,8 @@ import { API, graphqlOperation } from 'aws-amplify';
 import * as costumqueries from "../graphql/customqueries"
 
 
-
+import Prestory from "../Component/StoryComponents/Prestory"
+import Endstory from "../Component/StoryComponents/Endstory"
 import Numberencryption from "../Component/Riddles/Numberencryption"
 import Unregularhouses from "../Component/Riddles/Unregularhouses"
 import Listleak from "../Component/Riddles/Listleak"
@@ -34,6 +35,9 @@ function Game() {
     const  gameCon = useContext(GameContext)
     const [loadingRiddles , setLoadingRiddles]= useState(true)
     const [riddles,setRiddels]= useState([])
+    const [onPrestory, setOnPrestory]= useState(true)
+    const [onMainQuest, setOnMainQuest]= useState(false)
+    const [onEndstory, setOnEndstory]= useState(false)
     
 
     const next = ()=> {
@@ -49,7 +53,7 @@ function Game() {
         loadData();
 
 
-      })
+      },[])
 
       /**
        * 
@@ -106,7 +110,15 @@ function Game() {
     
 
   return (
-      <div>
+        <div>
+         { onPrestory &&(<div>
+            <Prestory storylength={riddles.length} />
+            <Button onClick={()=> {setOnPrestory(false); setOnMainQuest(true); gameCon.setStart(true)}} >Starten!</Button>
+          </div>)}
+      
+
+
+          {onMainQuest &&(<div>
           <Costumtimer/>
           <Divider/>
            <Steps current={current}>
@@ -132,8 +144,8 @@ function Game() {
           )}
           
           {current === riddles.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
-              Done
+            <Button type="primary" disabled={gameCon.isNextButtonDisabled} onClick={() => {setOnMainQuest(false); setOnEndstory(true)}}>
+              Geschafft!
             </Button>
           )}
           {current > 0 && (
@@ -145,7 +157,15 @@ function Game() {
         
           
         
-      </div>
+      </div>)}
+      { onEndstory && (<div>
+        <Endstory/>
+      </div>)
+
+      }
+
+    </div>
+     
    
  
   );

@@ -2,9 +2,14 @@ import React, { useContext, useEffect, useState } from "react"
 import {API, Auth, graphqlOperation} from "aws-amplify"
 import * as customQuerie from "../graphql/customqueries"
 import * as customMutations from "../graphql/custommutations"
+import * as mutations from "../graphql/mutations"
+
 import {AuthContext} from "../util/AuthContext"
-import { Card, Col, Popconfirm, Row , Space,  message} from "antd"
-import { DeleteTwoTone } from "@ant-design/icons"
+import {GameContext} from "../util/GameContext"
+import { Card, Col, Popconfirm, Row , Space,  message, Input, Button} from "antd"
+import { DeleteTwoTone, EditOutlined, EditTwoTone, PlayCircleTwoTone } from "@ant-design/icons"
+import Modal from "antd/lib/modal/Modal"
+import { useHistory } from "react-router-dom"
 
 
 /**
@@ -22,6 +27,10 @@ const EscapeRoomDash = ({}) => {
     const [currentUserEscaperooms, setCurrentUserEscaperooms] = useState('');
     const [loading, setLoading] = useState(true);
     const authContext= useContext(AuthContext)
+    const gameCon = useContext(GameContext)
+    let history = useHistory()
+    const [editItems , setEditItems]= useState([])
+    const [editNameInput, setEditNameInput]= useState("")
 
     useEffect(() =>{
         loadData()
@@ -81,7 +90,84 @@ const EscapeRoomDash = ({}) => {
 
     }
 
+    /**
+     * An array that stores if an input flied is collapsed or not. it toggles the input field
+     * 
+     * @param {
+     * } itemid 
+     */
 
+    function addItemsEditArray(itemid){
+        if(!editItems.includes(itemid)){
+            setEditItems([...editItems,itemid])
+        }else{
+            deleteItemsEditArray(itemid)
+        }
+
+    }
+    /**
+     * 
+     * Secound function to store an array and delete the items
+     * 
+     * @param {
+     * } itemid 
+     */
+
+    function deleteItemsEditArray(itemid){
+        if(editItems.includes(itemid)){
+            setEditItems(editItems.filter(listitem => listitem !== itemid))
+        }
+
+    }
+    /**
+     * function that stores the input of the field
+     * 
+     * @param {
+     * } e 
+     */
+
+    const onChange = e =>{
+        e.persist()
+        setEditNameInput(e.target.value)
+
+    }
+
+    /**
+     * 
+     * async function that updates the name of the Escaperoom
+     * 
+     * @param {
+     * } itemid 
+     */
+
+    async function submitChangeNameHandler(itemid){
+        deleteItemsEditArray(itemid)
+
+        const itemInfo ={ input: { id:itemid, name : editNameInput} }
+        await API.graphql(graphqlOperation(mutations.updateEscapeRoom, itemInfo ));
+
+
+
+
+        message.success('Escaperoomname wurde geändert');
+
+
+
+    }
+
+    /**
+     * 
+     * starts an Escaperoom out of the Cards
+     * 
+     * @param {
+     * } itemseed 
+     */
+    
+    function playEscapeRoom(itemseed){
+        gameCon.setSeed(itemseed)
+        history.push("/game")
+
+    }
     
     return (
         <div >{
@@ -93,11 +179,16 @@ const EscapeRoomDash = ({}) => {
                 currentUserEscaperooms.map(
                  item =>(   
                                <Col span={8} key = {item.id}>
+                                   {}
                                    <Space align="center">
                                    <Card hoverable title={item.name}
                                          bordered={true} 
-                                         style={{ width: 300 , margin: "30px" }}
-                                         extra={
+                                         style={{ width: 300 , margin: "30px" , textAlign: "center" }}
+                                         extra={ <div> 
+                                            
+                                                <EditTwoTone style={{ color : "#08c", fontSize : "25px"}} onClick={()=> addItemsEditArray(item.id) } />
+                                                
+
                                                 <Popconfirm
                                                 title="Wollen Sie den Escaperoom wirklich löschen ? "
                                                 onConfirm={() => deleteHandler(item.id)}
@@ -105,18 +196,30 @@ const EscapeRoomDash = ({}) => {
                                                 okText="Ja"
                                                 cancelText="Nein">
                                                              <DeleteTwoTone 
-                                                               style={{ color : "#08c", fontSize : "25px"}} /></Popconfirm>}
+                                                               style={{ color : "#08c", fontSize : "25px"}} /></Popconfirm></div>}
                                          >
                                        Autor : {item.author} <br/>
                                        StartCode: <b> {item.seed}</b>
+                                       {  editItems.includes(item.id) &&(
+                                          <div>
+                                              <Input onChange={onChange}></Input>
+                                              <Button onClick={()=>{submitChangeNameHandler(item.id)}}>Erneuern</Button></div>
+                                       )
+                                       
+                                       }<br/>
+                                       <Space align="center"></Space>
+                                       <PlayCircleTwoTone onClick={()=> playEscapeRoom(item.seed)} style={{ fontSize: "50px", textAlign: "center"}} />
+
                                        
                                     </Card>
                                     </Space>
                                  </Col>
                             
                         
-             ))}</Row></div>
-      }</div>
+             ))}</Row>
+             </div>
+      }
+      </div>
     );
   
 }

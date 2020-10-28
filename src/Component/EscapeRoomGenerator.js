@@ -107,8 +107,8 @@ const EscapeRoomGenerator = () => {
 
         
 
-
         history.push("/")
+        history.push("/dashboard")
 
 
     }
