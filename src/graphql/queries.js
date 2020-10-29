@@ -8,6 +8,7 @@ export const getEscapeRoom = /* GraphQL */ `
       name
       seed
       author
+      duration
       riddles {
         items {
           id
@@ -29,6 +30,7 @@ export const listEscapeRooms = /* GraphQL */ `
         name
         seed
         author
+        duration
         riddles {
           nextToken
         }
@@ -46,6 +48,7 @@ export const getEscapeRoomRiddles = /* GraphQL */ `
         name
         seed
         author
+        duration
         riddles {
           nextToken
         }
@@ -80,6 +83,7 @@ export const listEscapeRoomRiddless = /* GraphQL */ `
           name
           seed
           author
+          duration
         }
         riddle {
           id

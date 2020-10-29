@@ -47,3 +47,12 @@ query MyQuery($author: String) {
     }
   }
   `;
+
+  export const getDurationBySeed =`query MyQuery($seed :String) {
+    listEscapeRooms(filter: {seed: {eq: $seed}}) {
+      items {
+        duration
+      }
+    }
+  }
+  `;

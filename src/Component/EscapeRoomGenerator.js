@@ -28,6 +28,7 @@ const EscapeRoomGenerator = () => {
     const [escapeRoomId, setEscapeRoomID]= useState("");
 
     const [duration, setDuration] = useState('');
+    const [maxMinRiddleNum, setMaxMinRiddleNum]= useState(0);
 
     const authCon= useContext(AuthContext);
     const riddleCon = useContext(RiddleContext);
@@ -84,7 +85,7 @@ const EscapeRoomGenerator = () => {
     async function submitHandler() {
 
         //EscapeRoom erstellen in AWS
-        const escapeRoom ={ input :{ name : escRoNam , author : authCon.username}}
+        const escapeRoom ={ input :{ name : escRoNam , author : authCon.username, duration : duration}}
         const mutationreturn = await API.graphql(graphqlOperation(mutations.createEscapeRoom, escapeRoom));  
         
         let escapeRoomId = mutationreturn.data.createEscapeRoom.id
@@ -167,6 +168,18 @@ const EscapeRoomGenerator = () => {
 
     const onChangeSelectDuration =(value) =>{
         setDuration(value)
+        if(value===10){
+            setMaxMinRiddleNum(3)
+        }
+        else if(value === 15){
+            setMaxMinRiddleNum(4)
+        }
+        else if(value === 30){
+            setMaxMinRiddleNum(9)
+        }
+        else if(value === 45){
+            setMaxMinRiddleNum(12)
+        }
     }
 
 
@@ -241,7 +254,8 @@ const EscapeRoomGenerator = () => {
      * 
      */
 
-    const randomRoom = () =>{
+    const randomRoom = () =>{   
+
         let algo = Math.floor(Math.random() * riddleCon.algorithmikRiddle.length)
         let allRiddles = [] 
 
@@ -273,6 +287,40 @@ const EscapeRoomGenerator = () => {
 
         let all= allRiddles.concat(randomRiddles(riddleCon.algorithmikRiddle, algo), kodrids , theorids, graphrids, progrids, modrids)
         
+        if(all.length < maxMinRiddleNum){
+            if(maxMinRiddleNum===3){
+                let first=randomRiddles(riddleCon.algorithmikRiddle,1)
+                let second=randomRiddles(riddleCon.kodierungRiddle,1)
+                let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,1)
+                all = first.concat(second,third)
+            }
+            if(maxMinRiddleNum===4){
+                let first=randomRiddles(riddleCon.algorithmikRiddle,2)
+                let second=randomRiddles(riddleCon.kodierungRiddle,1)
+                let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,1)
+                all = first.concat(second,third)
+            }
+            /*
+            if(maxMinRiddleNum===9){
+                let first=randomRiddles(riddleCon.algorithmikRiddle,2)
+                let second=randomRiddles(riddleCon.kodierungRiddle,2)
+                let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,2)
+                let forth=randomRiddles(riddleCon.theoretischeInformatikRiddle,2)
+                let fifth=randomRiddles(riddleCon.programmierenRiddle,1)
+                all = first.concat(second,third,forth, fifth)
+            }
+            if(maxMinRiddleNum===12){
+                let first=randomRiddles(riddleCon.algorithmikRiddle,3)
+                let second=randomRiddles(riddleCon.kodierungRiddle,2)
+                let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,3)
+                let forth=randomRiddles(riddleCon.theoretischeInformatikRiddle,2)
+                let fifth=randomRiddles(riddleCon.programmierenRiddle,2)
+                all = first.concat(second,third,forth, fifth)
+            }*/
+
+
+        }
+
         riddleCon.setSelectedRiddles(all)
 
     }
@@ -356,6 +404,7 @@ const EscapeRoomGenerator = () => {
 
             {  categoryGenerator && ( 
                 <div style={{textAlign :"center"}} >
+                    <h3>Es werden <b style={{ color : "#4e89ed"}}>{maxMinRiddleNum}</b> Rätsel empfohlen damit Sie die Zeit von {duration} Minuten nicht überschreiten oder unterschreiten</h3>
 
                     Algorithmik<br/>
 

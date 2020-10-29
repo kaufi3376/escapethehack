@@ -38,6 +38,11 @@ function Game() {
     const [onPrestory, setOnPrestory]= useState(true)
     const [onMainQuest, setOnMainQuest]= useState(false)
     const [onEndstory, setOnEndstory]= useState(false)
+
+
+    const [temp, setTemp]= useState(0)
+    const [duration, setDuration]= useState(0)
+
     
 
     const next = ()=> {
@@ -64,6 +69,11 @@ function Game() {
       async function loadData(){
         const seedInfo ={  seed : gameCon.seed }
         const fetchedRiddles= await API.graphql(graphqlOperation(costumqueries.getRiddlesBySeed, seedInfo ));
+
+      
+        const fetchedduration= await API.graphql(graphqlOperation(costumqueries.getDurationBySeed, seedInfo ));
+
+        setDuration(fetchedduration.data.listEscapeRooms.items[0].duration)
 
         let containerRiddles = []
 
@@ -113,13 +123,14 @@ function Game() {
         <div>
          { onPrestory &&(<div>
             <Prestory storylength={riddles.length} />
-            <Button onClick={()=> {setOnPrestory(false); setOnMainQuest(true); gameCon.setStart(true)}} >Starten!</Button>
+            <Button onClick={()=> {setOnPrestory(false); setOnMainQuest(true); gameCon.setStart(true); setTemp(1000*60*duration+1000)}} >Starten!</Button>
           </div>)}
       
 
 
           {onMainQuest &&(<div>
-          <Costumtimer/>
+
+          <Costumtimer time={temp}/>
           <Divider/>
            <Steps current={current}>
           {riddles.map(item => (

@@ -11,6 +11,7 @@ export const createEscapeRoom = /* GraphQL */ `
       name
       seed
       author
+      duration
       riddles {
         items {
           id
@@ -30,6 +31,7 @@ export const updateEscapeRoom = /* GraphQL */ `
       name
       seed
       author
+      duration
       riddles {
         items {
           id
@@ -49,6 +51,7 @@ export const deleteEscapeRoom = /* GraphQL */ `
       name
       seed
       author
+      duration
       riddles {
         items {
           id
@@ -70,6 +73,7 @@ export const createEscapeRoomRiddles = /* GraphQL */ `
         name
         seed
         author
+        duration
         riddles {
           nextToken
         }
@@ -98,6 +102,7 @@ export const updateEscapeRoomRiddles = /* GraphQL */ `
         name
         seed
         author
+        duration
         riddles {
           nextToken
         }
@@ -126,6 +131,7 @@ export const deleteEscapeRoomRiddles = /* GraphQL */ `
         name
         seed
         author
+        duration
         riddles {
           nextToken
         }

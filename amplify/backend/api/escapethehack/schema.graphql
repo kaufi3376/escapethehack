@@ -3,6 +3,7 @@ type EscapeRoom @model {
   name: String!
   seed : String
   author :String
+  duration : Int
   riddles: [EscapeRoomRiddles] @connection(name: "EscRid")
 }
 type EscapeRoomRiddles @model {

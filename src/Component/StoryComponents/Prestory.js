@@ -11,7 +11,7 @@ function Prestory({
             <h1>Escape the Hack</h1>
             <b><p>Hier Comic story einsetzten</p></b>
             <p>Die Welt ist nicht so wie wir sie kennen.. Der Präsident der Vereinigten Staaten braucht deine Hilfe um die Welt vor einem Hackerangriff zu schützen <br/>
-                <b> Du muust  {storylength} Attacken abwehren...</b></p><br/>
+                <b> Du musst  {storylength} Attacken abwehren...</b></p><br/>
             <p>Es wäre gelacht wenn du das nicht schaffen !</p><br/>
             
             

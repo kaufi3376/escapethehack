@@ -63,7 +63,7 @@ function Authenticationarea() {
      * 
      */
 
-    async function signUp() {
+  async function signUp() {
 
       try{
         const {username , email , password} = formState
