@@ -197,7 +197,7 @@ function Authenticationarea() {
                                       <Button type="primary" htmlType="submit" className="login-form-button" onClick={signIn}>
                                        Einloggen
                                       </Button>
-                                            Oder     <a onClick={signInFirst}>Registrieren</a>
+                                            Oder     <a onClick={signInFirst} className="registerlink">Registrieren</a>
                          </Form.Item>
                   </Form>
                 </div>
