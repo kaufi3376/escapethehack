@@ -15,10 +15,11 @@ export const GameContext = React.createContext({
     isNextButtonDisabled: true,
     tippsCount :2,
     joker :1,
-    tippsCount : [],
+    tipps: [],
     seed : 0,
     start: false,
-    time : 0
+    time : 0,
+    offstory: true
 });
 
 
@@ -39,6 +40,7 @@ const GameContextProvider = props => {
     const [seed , setSeed]= useState(0)
     const [start, setStart]= useState(false)
     const [time, setTime]= useState(Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30)
+    const [offstory, setOffstory]= useState(true)
 
 
 
@@ -71,6 +73,12 @@ const GameContextProvider = props => {
     const setTimeHandler = (time) =>{
         setTime(time)
     }
+    const resetTippsCount =()=>{
+        setTippsCount(2)
+    }
+    const setOffstoryHandler =(bool)=>{
+        setOffstory(bool)
+    }
 
 
     useEffect( () => {
@@ -94,12 +102,15 @@ const GameContextProvider = props => {
                                       decrementJoker : decrementJoker,
                                       tipps : tipps,
                                       setTipps : setCostumTipps,
+                                      resetTippsCount: resetTippsCount,
                                       seed :seed,
                                       setSeed: setSeedHandler,
                                       start: start,
                                       setStart : setStartHandler,
                                       time : time,
-                                      setTime : setTimeHandler }}>
+                                      setTime : setTimeHandler,
+                                      offstory: offstory,
+                                      setOffstory: setOffstoryHandler }}>
             {props.children}
         </GameContext.Provider>
 

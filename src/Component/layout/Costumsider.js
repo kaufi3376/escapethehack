@@ -79,6 +79,9 @@ function Costumsider () {
         })
 
         const backToHomeHandler = () => {
+          
+          gameCon.resetTippsCount()
+
           gameCon.setStart(false)
           history.push("/")
 
@@ -94,9 +97,11 @@ function Costumsider () {
           <Sider collapsed={collapsed} onCollapse={onCollapse}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-              <Menu.Item key="1" icon={<RadarChartOutlined />} onClick={backToHomeHandler}>
-              
-              </Menu.Item>
+              <Menu.Item key="1" icon={<RadarChartOutlined />} onClick={backToHomeHandler}></Menu.Item>
+            
+              {
+
+              !gameCon.offstory &&(
                      
                        <Menu.Item key="2" icon={
                                                  <Badge count={gameCon.tippsCount} offset={[10, 13]}>
@@ -107,7 +112,7 @@ function Costumsider () {
                                         onClick={pressTippsHandler}>
                        </Menu.Item>
                 
-                      
+                )  }        
 
              
             </Menu>
@@ -137,13 +142,16 @@ function Costumsider () {
 
 
           }
-
+          
           {
-             showTip && (
+             
+             showTip &&  (
+               
                
               <li>{gameCon.tipps[gameCon.tippsCount].content} </li>
               
               )
+              
              }      
 
         </Modal>

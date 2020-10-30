@@ -48,6 +48,7 @@ function Game() {
     const next = ()=> {
         gameCon.setDisable();
         setCurrent(current+1)
+        gameCon.resetTippsCount()
       }
     
       const prev = ()=> {
@@ -85,23 +86,23 @@ function Game() {
 
               break;
             case "Unregularhouses" : 
-              containerRiddles.push({title :"", content : <Unregularhouses/>})
+              containerRiddles.push({title :"Irreguläre Häuser", content : <Unregularhouses/>})
 
               break;
             case "Listleak" : 
-              containerRiddles.push({title :"", content : <Listleak/>})
+              containerRiddles.push({title :"Eine geklaute Liste", content : <Listleak/>})
 
               break;
             case "Warningtour" : 
-              containerRiddles.push({title :"", content : <Warningtour/>})
+              containerRiddles.push({title :"Wir müssen sie warnen", content : <Warningtour/>})
 
               break;
             case "Multipleattacks" : 
-              containerRiddles.push({title :"", content : <Multipleattacks/>})
+              containerRiddles.push({title :"Mehrere Attacken", content : <Multipleattacks/>})
 
               break;
             case "Socialhackernetwork" : 
-              containerRiddles.push({title :"", content : <Socialhackernetwork/>})
+              containerRiddles.push({title :"Soziale Netze", content : <Socialhackernetwork/>})
 
               break;
             
@@ -116,14 +117,22 @@ function Game() {
 
       }
 
+      const startHandler = ()=> {
+        setOnPrestory(false); 
+        setOnMainQuest(true); 
+        gameCon.setStart(true); 
+        gameCon.setOffstory(false)
+        setTemp(1000*60*duration+1000); 
 
+
+      }
     
 
   return (
         <div>
          { onPrestory &&(<div>
             <Prestory storylength={riddles.length} />
-            <Button onClick={()=> {setOnPrestory(false); setOnMainQuest(true); gameCon.setStart(true); setTemp(1000*60*duration+1000)}} >Starten!</Button>
+            <Button onClick={startHandler} >Starten!</Button>
           </div>)}
       
 

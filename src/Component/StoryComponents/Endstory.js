@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import {GameContext} from "../../util/GameContext"
 
 
 
 function Endstory({
     time
 }) {
+    const gameCon = useContext(GameContext)
+
+    useEffect(()=>{
+        gameCon.setOffstory(true)
+    })
   
     return (
         <div> 

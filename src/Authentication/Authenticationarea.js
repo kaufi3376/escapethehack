@@ -85,7 +85,8 @@ function Authenticationarea() {
             else if (error.message === "1 validation error detected: Value at 'password' failed to satisfy constraint: Member must have length greater than or equal to 6"){
               message.error("Das Passwort muss mindestens 6 Zeichen lang sein");
             }
-              
+            else if(error.message ==="1 validation error detected: Value at 'username' failed to satisfy constraint: Member must satisfy regular expression pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+")
+            message.error("Der Nutzername ist nicht gültig");
               break;
         }
         
@@ -264,7 +265,7 @@ function Authenticationarea() {
 
                            <Form.Item>
                                       <Button type="primary" htmlType="submit" className="login-form-button" onClick={signUp}>
-                                       Einloggen
+                                       Registrieren
                                       </Button>
                          </Form.Item>
     </Form>

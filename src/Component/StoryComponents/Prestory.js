@@ -1,11 +1,15 @@
-import React from 'react';
-
+import React, { useContext, useEffect } from 'react';
+import {GameContext} from "../../util/GameContext"
 
 
 function Prestory({
     storylength
 }) {
-  
+    const gameCon = useContext(GameContext)
+
+    useEffect(()=>{
+        gameCon.setOffstory(true)
+    })
     return (
         <div> 
             <h1>Escape the Hack</h1>
