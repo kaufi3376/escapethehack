@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import {GameContext} from "../../util/GameContext"
-
+import prestoryComic from "../../Pictures/stroy _comic2.png"
 
 function Prestory({
     storylength
@@ -12,8 +12,9 @@ function Prestory({
     })
     return (
         <div> 
-            <h1>Escape the Hack</h1>
-            <b><p>Hier Comic story einsetzten</p></b>
+            <h1 style = {{ textAlign : "center"}}>Escape the Hack</h1>
+            <img src={prestoryComic} style={{width: "100%", height : "auto"}} ></img>
+      
             <p>Die Welt ist nicht so wie wir sie kennen.. Der Präsident der Vereinigten Staaten braucht deine Hilfe um die Welt vor einem Hackerangriff zu schützen <br/>
                 <b> Du musst  {storylength} Attacken abwehren...</b></p><br/>
             <p>Es wäre gelacht wenn du das nicht schaffen !</p><br/>
