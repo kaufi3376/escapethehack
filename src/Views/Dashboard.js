@@ -12,7 +12,7 @@ import { Card } from 'antd';
  * 
  */
 
-function Home() {
+function Dashboard() {
 
     const [key, setKey]= useState("tab1")
 
@@ -70,4 +70,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;

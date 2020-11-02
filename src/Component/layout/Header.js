@@ -92,9 +92,6 @@ const Header = () => {
       ? <Menu.Item key="5" onClick={MenuFiveHandler} icon= {<UserOutlined />}>Abmelden</Menu.Item>
       : <Menu.Item key="6"></Menu.Item>
        }
-       {/*
-       <Menu.Item key="7" onClick={MenuFourHandler}> Userinfo</Menu.Item>
-       */}
     </Menu>
     </div>
   )

@@ -6,9 +6,14 @@ import Header from "../../Component/layout/Header"
 
 
 describe("<Header/>", () => {
-    it("", () => {
-       
-      });
+ let wrapper
+  it("check if Menu exists  ", () => {
+    wrapper = shallow(<Header />);
+    const mycomp = wrapper.find("Menu");
+
+    expect(mycomp.exists()).toEqual(true);
+  });
+
    
   });
   

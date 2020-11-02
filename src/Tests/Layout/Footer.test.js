@@ -6,8 +6,12 @@ import Footer from "../../Component/layout/Footer"
 
 
 describe("<Footer/>", () => {
-    it("", () => {
-       
+    let wrapper
+    it("renders the footer text correctly", () => {
+      wrapper = shallow(<Footer />);
+      const mycomp = wrapper.find("div");
+  
+      expect(mycomp.text()).toBe("Ant Design ©2018 Created by Ant UED");
       });
    
   });

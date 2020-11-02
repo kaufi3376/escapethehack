@@ -44,7 +44,7 @@ const EscapeRoomDash = ({}) => {
     async function loadData() {
         if(!authContext.isLoading){
 
-        const userInfo ={  author : authContext.username}
+        const userInfo ={  author : "MeinBenutzername"}
         const userEscapeRooms = await API.graphql(graphqlOperation(customQuerie.getEscapeRoomByName, userInfo ));
         setCurrentUserEscaperooms(userEscapeRooms.data.listEscapeRooms.items)
         setLoading(false)
