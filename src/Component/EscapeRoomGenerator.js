@@ -322,7 +322,6 @@ const EscapeRoomGenerator = () => {
         }
 
         riddleCon.setSelectedRiddles(all)
-
     }
 
     
@@ -376,13 +375,13 @@ const EscapeRoomGenerator = () => {
                          
                    </Card>
 
-                   {/*
+                   {
                    <Card  title="Einzelne Rätsel wählen" >
                          <p>Wählen sie einzelne Rätsel aus</p><br/>
                          <Button onClick={()=>{ setChooseHelpTrigger(false); setRiddleGenerator(true)}}>Weiter</Button>
                          
                    </Card>
-                   */}
+                   }
             </div>)}
 
 

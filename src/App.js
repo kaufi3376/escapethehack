@@ -30,7 +30,7 @@ import RiddleContextProvider from "./util/RiddleContext"
  * 
  */
 
-
+import test from "./Component/Riddles/Cleanpaper"
 
 const history = createBrowserHistory();
 
@@ -57,8 +57,7 @@ function App() {
               <AppRoute exact path ="/" component={Home} layout={antdLayout} />
               <AppRoute exact path ="/authentication" component={Authenticationarea} layout={antdLayout} />
               <ProtectedRoute exact path ="/dashboard" component={Dashboard} layout={antdLayout} />
-          
-         
+
               <AppRoute exact path ="/game" component={Game} layout={GameLayout} />
              </RiddleContextProvider>
             </GameContextProvider>

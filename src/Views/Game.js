@@ -18,6 +18,8 @@ import Listleak from "../Component/Riddles/Listleak"
 import Warningtour from "../Component/Riddles/Warningtour"
 import Multipleattacks from "../Component/Riddles/Multipleattacks"
 import Socialhackernetwork from "../Component/Riddles/Socialhackernetwork"
+import Hackerlanguage from "../Component/Riddles/Hackerlanguage"
+import Cleanpaper from '../Component/Riddles/Cleanpaper';
 
 /**
  * 
@@ -103,6 +105,14 @@ function Game() {
               break;
             case "Socialhackernetwork" : 
               containerRiddles.push({title :"Soziale Netze", content : <Socialhackernetwork/>})
+
+              break;
+            case "Hackerlanguage" : 
+              containerRiddles.push({title :"Hackersprache", content : <Hackerlanguage/>})
+
+              break;
+              case "Cleanpaper" : 
+              containerRiddles.push({title :"leeres Papier", content : <Cleanpaper/>})
 
               break;
             

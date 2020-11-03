@@ -45,8 +45,21 @@ const RiddleCheckbox = ({
 
       const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
+
+
+  
+          
+
+          /*
+          if(!riddleCon.selectedRows.includes(selectedRows)){
+            riddleCon.setSelectedRows(...riddleCon.selectedRows,selectedRows)
+          }
+
     
 
+
+
+        /*
           const uncheckedData = data.filter( x => !selectedRows.includes(x))
 
           console.log(selectedRows)
@@ -62,7 +75,7 @@ const RiddleCheckbox = ({
 
 
       
-          /*
+          
           let temp = riddleCon.selectedRows.filter( x => !data.includes(x))
 
           console.log(temp)
