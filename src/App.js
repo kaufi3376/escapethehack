@@ -11,6 +11,8 @@ import Dashboard from "./Views/Dashboard"
 import Game from './Views/Game';
 import Authenticationarea from "./Authentication/Authenticationarea"
 
+import Locker from "./Component/Riddles/Locker"
+
 //Design
 import antdLayout from './Layouts/antdLayout';
 import GameLayout from './Layouts/GameLayout';
@@ -59,6 +61,8 @@ function App() {
               <ProtectedRoute exact path ="/dashboard" component={Dashboard} layout={antdLayout} />
 
               <AppRoute exact path ="/game" component={Game} layout={GameLayout} />
+
+              <AppRoute exact path ="/disp" component={Locker} layout={GameLayout} />
              </RiddleContextProvider>
             </GameContextProvider>
            </AuthContextProvider>

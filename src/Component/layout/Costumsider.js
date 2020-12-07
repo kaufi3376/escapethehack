@@ -99,7 +99,7 @@ function Costumsider () {
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1" icon={<RadarChartOutlined />} onClick={backToHomeHandler}></Menu.Item>
             
-              {
+              {/*
 
               !gameCon.offstory &&(
                      
@@ -112,7 +112,7 @@ function Costumsider () {
                                         onClick={pressTippsHandler}>
                        </Menu.Item>
                 
-                )  }        
+                                              ) */ }        
 
              
             </Menu>

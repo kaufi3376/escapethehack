@@ -20,6 +20,8 @@ import Multipleattacks from "../Component/Riddles/Multipleattacks"
 import Socialhackernetwork from "../Component/Riddles/Socialhackernetwork"
 import Hackerlanguage from "../Component/Riddles/Hackerlanguage"
 import Cleanpaper from '../Component/Riddles/Cleanpaper';
+import Locker from '../Component/Riddles/Locker';
+import Disput from '../Component/Riddles/Disput';
 
 /**
  * 
@@ -115,6 +117,16 @@ function Game() {
               containerRiddles.push({title :"leeres Papier", content : <Cleanpaper/>})
 
               break;
+
+              case "Disput" : 
+              containerRiddles.push({title :"Wenn sich Hacker streiten", content : <Disput/>})
+
+              break;
+
+              case "Locker" : 
+              containerRiddles.push({title :"Schließfach", content : <Locker/>})
+
+              break;
             
           }
         })
@@ -132,7 +144,7 @@ function Game() {
         setOnMainQuest(true); 
         gameCon.setStart(true); 
         gameCon.setOffstory(false)
-        setTemp(1000*60*duration+1000); 
+        setTemp(1000*20*duration+1000); 
 
 
       }
@@ -178,11 +190,12 @@ function Game() {
               Geschafft!
             </Button>
           )}
-          {current > 0 && (
+          {/*
+          current > 0 && (
             <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
               Previous
             </Button>
-          )}
+          )*/}
         </div>
         
           
