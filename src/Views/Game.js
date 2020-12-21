@@ -22,6 +22,9 @@ import Hackerlanguage from "../Component/Riddles/Hackerlanguage"
 import Cleanpaper from '../Component/Riddles/Cleanpaper';
 import Locker from '../Component/Riddles/Locker';
 import Disput from '../Component/Riddles/Disput';
+import Alarm from '../Component/Riddles/Alarm';
+import HackerNames from '../Component/Riddles/HackerNames';
+import GridPath from '../Component/Riddles/GridPath';
 
 /**
  * 
@@ -125,6 +128,21 @@ function Game() {
 
               case "Locker" : 
               containerRiddles.push({title :"Schließfach", content : <Locker/>})
+
+              break;
+
+              case "Alarm" : 
+              containerRiddles.push({title :"Alarm", content : <Alarm/>})
+
+              break;
+
+              case "HackerNames" : 
+              containerRiddles.push({title :"HackerNames", content : <HackerNames/>})
+
+              break;
+
+              case "GridPath" : 
+              containerRiddles.push({title :"GridPath", content : <GridPath/>})
 
               break;
             
