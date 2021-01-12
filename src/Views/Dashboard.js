@@ -25,20 +25,12 @@ function Dashboard() {
           key: 'tab2',
           tab: 'Neuen EscapeRoom erstellen',
         },
-        {
-          key: 'tab3',
-          tab: 'Rätsel ansehen (t.b.a)',
-        },
-        {
-          key: 'tab4',
-          tab: 'Lösungen der Rätsel (t.b.a)',
-        },
+       
       ];
       const contentList = {
         tab1: <EscapeRoomDash/>,
         tab2: <EscapeRoomGenerator/>,
-        tab3: <div></div>,
-        tab4 : <div></div>
+
       };
 
     

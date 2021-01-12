@@ -54,6 +54,8 @@ const EscapeRoomGenerator = () => {
     const[progNum, setProgNum]= useState(0);
     const[modNum, setModNum]= useState(0);
 
+    const[minOneRid,setMinOneRid]= useState(false);
+
     let history = useHistory()
     const nameRegEx= /^[^%]{4,}$/;
 
@@ -172,13 +174,13 @@ const EscapeRoomGenerator = () => {
             setMaxMinRiddleNum(3)
         }
         else if(value === 15){
-            setMaxMinRiddleNum(4)
+            setMaxMinRiddleNum(5)
         }
         else if(value === 30){
-            setMaxMinRiddleNum(9)
+            setMaxMinRiddleNum(10)
         }
         else if(value === 45){
-            setMaxMinRiddleNum(12)
+            setMaxMinRiddleNum(11)
         }
     }
 
@@ -207,9 +209,9 @@ const EscapeRoomGenerator = () => {
         let randModRiddles = randomRiddles(riddleCon.modellierenRiddle, modNum)
 
 
-       riddleCon.setSelectedRiddles(randAlgoRiddles.concat(randKodRiddles, randTheoRiddles, randGraphRiddles, randProgRiddles, randModRiddles ))
+       let temp = randAlgoRiddles.concat(randKodRiddles, randTheoRiddles, randGraphRiddles, randProgRiddles, randModRiddles )
+       riddleCon.setSelectedRiddles(temp)
         
-      
        
         
 
@@ -294,29 +296,31 @@ const EscapeRoomGenerator = () => {
                 let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,1)
                 all = first.concat(second,third)
             }
-            if(maxMinRiddleNum===4){
+            if(maxMinRiddleNum===5){
                 let first=randomRiddles(riddleCon.algorithmikRiddle,2)
                 let second=randomRiddles(riddleCon.kodierungRiddle,1)
                 let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,1)
                 all = first.concat(second,third)
             }
-            /*
-            if(maxMinRiddleNum===9){
+            
+            if(maxMinRiddleNum===10){
                 let first=randomRiddles(riddleCon.algorithmikRiddle,2)
-                let second=randomRiddles(riddleCon.kodierungRiddle,2)
+                let second=randomRiddles(riddleCon.kodierungRiddle,1)
                 let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,2)
                 let forth=randomRiddles(riddleCon.theoretischeInformatikRiddle,2)
                 let fifth=randomRiddles(riddleCon.programmierenRiddle,1)
-                all = first.concat(second,third,forth, fifth)
+                let sixth = randomRiddles(riddleCon.modellierenRiddle,1)
+                all = first.concat(second,third,forth, fifth,sixth)
             }
-            if(maxMinRiddleNum===12){
-                let first=randomRiddles(riddleCon.algorithmikRiddle,3)
-                let second=randomRiddles(riddleCon.kodierungRiddle,2)
-                let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,3)
+            if(maxMinRiddleNum===11){
+                let first=randomRiddles(riddleCon.algorithmikRiddle,2)
+                let second=randomRiddles(riddleCon.kodierungRiddle,1)
+                let third=randomRiddles(riddleCon.graphenUndDatenstrukturenRiddle,2)
                 let forth=randomRiddles(riddleCon.theoretischeInformatikRiddle,2)
-                let fifth=randomRiddles(riddleCon.programmierenRiddle,2)
-                all = first.concat(second,third,forth, fifth)
-            }*/
+                let fifth=randomRiddles(riddleCon.programmierenRiddle,1)
+                let sixth = randomRiddles(riddleCon.modellierenRiddle,1)
+                all = first.concat(second,third,forth, fifth,sixth)
+            }
 
 
         }
@@ -324,6 +328,8 @@ const EscapeRoomGenerator = () => {
         riddleCon.setSelectedRiddles(all)
     }
 
+
+   
     
     return (
         <div>
@@ -431,9 +437,11 @@ const EscapeRoomGenerator = () => {
                    <Slider tooltipVisible style={{ width:"20%"}} onChange={(value)=> {setModNum(value)} } max={riddleCon.modellierenRiddle.length}  /><br/>
 
                    <Button onClick={()=>{ chooseRiddlesByCategory();
+                      
                      setCategoryGenerator(false); 
-                     setviewSumup(true)
-                      }} >Weiter</Button>
+                     setviewSumup(true)}
+                  
+                      } >Weiter</Button>
 
 
 

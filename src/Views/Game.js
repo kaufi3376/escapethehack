@@ -162,7 +162,9 @@ function Game() {
         setOnMainQuest(true); 
         gameCon.setStart(true); 
         gameCon.setOffstory(false)
-        setTemp(1000*20*duration+1000); 
+        let timePerRiddle= duration/riddles.length
+        setTemp(1000*60*timePerRiddle+1000); 
+
 
 
       }
